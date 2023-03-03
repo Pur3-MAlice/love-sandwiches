@@ -1,8 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-
-
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -17,7 +12,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-sales = SHEET.worksheet('sales')
+def get_sales_data():
+    '''
+    get sales data from the user
+    '''
+    print("Please enter sales data from the last market")
+    print("data should be six number, seperated by commas")
+    print("example: 12,34,45,63,67,45")
 
-data = sales.get_all_values()
-print(data)
+    data_str = input("enter your data here:")
+    print(f"The data provided is {data_str}")
+
+get_sales_data()
