@@ -109,7 +109,7 @@ def calculate_stock_data(data):
 
     for column in data:
         int_column = [int(num) for num in column]
-        average = sum(int_column) / len(int_column) 
+        average = sum(int_column) / len(int_column)
         stock_num = average * 1.1
         new_stock_data.append(round(stock_num))
 
@@ -128,7 +128,33 @@ def main():
     sales_columns = get_last_5_entries_sales()
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "stock")
+    return stock_data
 
 
-print("Welcome to Love Sandwiches Data Automation")
-main()
+print("Welcome to Love Sandwiches data automation.\n")
+stock_data = main()
+
+# Write you code below this comment
+
+
+def get_stock_values():
+    '''
+    definition
+    '''
+    headings = SHEET.worksheet('stock').row_values(1)
+    print("Make the following number of sandwiches for next market: \n")
+    stock = SHEET.worksheet("stock").get_all_values()
+    last_row = stock[-1]
+
+    stock_values = {
+        headings[0]: last_row[0],
+        headings[1]: last_row[1],
+        headings[2]: last_row[2],
+        headings[3]: last_row[3],
+        headings[4]: last_row[4],
+        headings[5]: last_row[5],
+    }
+    print(stock_values)
+
+
+get_stock_values()
